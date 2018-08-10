@@ -43,7 +43,8 @@
 	function init (converter) {
 		function api() {}
 
-		function set (key, value, attributes) {
+		function set (key, value, attributes, config) {
+			var config = config || {};
 			if (typeof document === 'undefined') {
 				return;
 			}
@@ -70,10 +71,13 @@
 				converter.write(value, key) :
 				encodeURIComponent(String(value))
 					.replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
-
-			key = encodeURIComponent(String(key))
-				.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent)
-				.replace(/[\(\)]/g, escape);
+			if (config.encodeKey) {
+				key = encodeURIComponent(String(key));
+			} else {
+				key = String(key);
+			}
+			key = key.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent);
+			key =	key.replace(/[\(\)]/g, escape);
 
 			var stringifiedAttributes = '';
 			for (var attributeName in attributes) {
@@ -98,7 +102,8 @@
 			return (document.cookie = key + '=' + value + stringifiedAttributes);
 		}
 
-		function get (key, json) {
+		function get (key, json, config) {
+			var config = config || {};
 			if (typeof document === 'undefined') {
 				return;
 			}
@@ -118,10 +123,14 @@
 				}
 
 				try {
-					var name = decode(parts[0]);
+					var name;
+					if (config.decodeKey) {
+						name = decode(parts[0]);
+					} else {
+						name = parts[0];
+					}
 					cookie = (converter.read || converter)(cookie, name) ||
 						decode(cookie);
-
 					if (json) {
 						try {
 							cookie = JSON.parse(cookie);
@@ -140,8 +149,8 @@
 		}
 
 		api.set = set;
-		api.get = function (key) {
-			return get(key, false /* read as raw */);
+		api.get = function (key, config) {
+			return get(key, false, config/* read as raw */);
 		};
 		api.getJSON = function (key) {
 			return get(key, true /* read as json */);

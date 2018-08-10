@@ -1,7 +1,7 @@
 {
-  "name": "js-cookie",
-  "version": "2.2.0",
-  "description": "A simple, lightweight JavaScript API for handling cookies",
+  "name": "js-cookie-configurable",
+  "version": "1.0.0",
+  "description": "Fork from js-cookie. Configurable key's transcoding. A simple, lightweight JavaScript API for handling cookies",
   "main": "src/js.cookie.js",
   "directories": {
     "test": "test"
@@ -18,18 +18,17 @@
     "browserify"
   ],
   "scripts": {
-    "test": "grunt test"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/js-cookie/js-cookie.git"
+    "url": "git@github.com:toBeTheLight/js-cookie.git"
   },
   "files": [
     "src/**/*.js",
     "SERVER_SIDE.md",
     "CONTRIBUTING.md"
   ],
-  "author": "Klaus Hartl",
+  "author": "toBeTheLight",
   "license": "MIT",
   "devDependencies": {
     "grunt": "1.0.2",
