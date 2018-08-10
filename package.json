@@ -1,6 +1,6 @@
 {
   "name": "js-cookie-configurable",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Fork from js-cookie. Configurable key's transcoding. A simple, lightweight JavaScript API for handling cookies",
   "main": "src/js.cookie.js",
   "directories": {
