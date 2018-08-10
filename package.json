@@ -15,7 +15,8 @@
     "commonjs",
     "client",
     "js-cookie",
-    "browserify"
+    "browserify",
+    "no-transcoding"
   ],
   "scripts": {
   },
@@ -24,9 +25,7 @@
     "url": "git@github.com:toBeTheLight/js-cookie.git"
   },
   "files": [
-    "src/**/*.js",
-    "SERVER_SIDE.md",
-    "CONTRIBUTING.md"
+    "src/**/*.js"
   ],
   "author": "toBeTheLight",
   "license": "MIT",
